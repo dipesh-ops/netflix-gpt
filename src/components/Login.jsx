@@ -1,5 +1,8 @@
 import { useState, useRef } from "react"
 import { validateUser } from "../utils/validateUser";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../utils/firebase';
 
 const Login = () => {
 
@@ -20,6 +23,39 @@ const Login = () => {
       const message = validateUser(email.current.value, password.current.value);
       console.log(message);
       setErrorMessage(message);
+
+      if(message) return;
+
+      if (!isLogInUser) {
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage)
+          // ..
+        });
+      } else{
+        // login logic
+
+        signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log(user);          
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "-" + errorMessage);
+        });
+      }
     }
 
   return (
