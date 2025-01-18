@@ -3,9 +3,16 @@ import { validateUser } from "../utils/validateUser";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from '../utils/firebase';
+import { useNavigate } from "react-router-dom";
+import Header from "./Header";
+import { updateProfile } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
@@ -32,7 +39,17 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+          }).then(() => {
+               const {uid , email, displayName, photoURL} = auth.currentUser;
+                dispatch(addUser({uid : uid, email : email, displayName : displayName, photoURL : photoURL}));
+          }).catch((error) => {
+            setErrorMessage(error.message);
+          });
           console.log(user);
+          navigate('/browse');
           // ...
         })
         .catch((error) => {
@@ -48,7 +65,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
-          console.log(user);          
+          console.log(user);      
+          navigate('/browse');
           // ...
         })
         .catch((error) => {
@@ -61,6 +79,7 @@ const Login = () => {
 
   return (
     <div>
+      <Header/>
       <div className="landing-page">
         <div className="wrapper">
             <form onSubmit={e=> e.preventDefault()} className="absolute text-white top-44 mx-auto right-0 left-0 bg-black bg-opacity-70 p-10">
