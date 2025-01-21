@@ -1,13 +1,15 @@
 import Header from "./Header"
-import getNowPlayingMovies from "./hooks/useNowPlayingMovies"
+import MainMovie from "./MainMovie";
+import useNowPlayingMovies from "./hooks/useNowPlayingMovies";
 
 const Browse = () => {
 
-  getNowPlayingMovies();
+  useNowPlayingMovies();
+  
   return (
     <div>
       <Header/>
-      Browse
+      <MainMovie/>
     </div>
   )
 }

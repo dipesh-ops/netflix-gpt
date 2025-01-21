@@ -35,13 +35,13 @@ const Header = () => {
     });
   }
   return (
-    <div className='absolute w-screen top-2 flex justify-between items-center'>
+    <div className='absolute w-screen top-2 flex justify-between items-center z-10'>
       <img className='w-48' src={NETFLIX_MAIN_LOGO} alt="icon" />
 
       {user && 
       <div className="flex">
       <img className="w-10 h-10" src={user.photoURL} alt="" />
-      <button onClick={signingOut}>Sign Out</button>
+      <button className="text-white" onClick={signingOut}>Sign Out</button>
     </div>}
     </div>
   )
