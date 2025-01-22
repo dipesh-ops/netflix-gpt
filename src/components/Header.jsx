@@ -35,7 +35,7 @@ const Header = () => {
     });
   }
   return (
-    <div className='absolute w-screen top-2 flex justify-between items-center z-10'>
+    <div className='absolute w-screen flex justify-between items-center z-10'>
       <img className='w-48' src={NETFLIX_MAIN_LOGO} alt="icon" />
 
       {user && 

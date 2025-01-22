@@ -1,8 +1,9 @@
+import MainMovie from "./MainMovie"
 
 const MainContainer = () => {
   return (
     <div>
-      MainContainer
+      <MainMovie/>
     </div>
   )
 }

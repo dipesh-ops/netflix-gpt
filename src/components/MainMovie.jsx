@@ -9,7 +9,6 @@ const MainMovie = () => {
     if(!movie) return;
 
     const mainMovie = movie[0];
-    console.log(mainMovie);
     const {original_title, overview, id} = mainMovie;
     
   return (
