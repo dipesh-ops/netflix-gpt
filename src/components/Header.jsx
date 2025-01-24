@@ -12,6 +12,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(store => store.user);
+
+
   useEffect(()=>{
     const unsubscibe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -34,13 +36,16 @@ const Header = () => {
       navigate('*')
     });
   }
+
+ 
   return (
     <div className='absolute w-screen flex justify-between items-center z-10'>
       <img className='w-48' src={NETFLIX_MAIN_LOGO} alt="icon" />
 
       {user && 
       <div className="flex">
-      <img className="w-10 h-10" src={user.photoURL} alt="" />
+
+      <img className="w-10 h-10 hidden md:block" src={user.photoURL} alt="" />
       <button className="text-white" onClick={signingOut}>Sign Out</button>
     </div>}
     </div>

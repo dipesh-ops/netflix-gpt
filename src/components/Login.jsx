@@ -79,7 +79,7 @@ const Login = () => {
       <Header/>
       <div className="landing-page">
         <div className="wrapper">
-            <form onSubmit={e=> e.preventDefault()} className="absolute w-4/12 text-white top-44 mx-auto right-0 left-0 bg-black bg-opacity-70 p-10">
+            <form onSubmit={e=> e.preventDefault()} className="absolute w-full md:w-4/12 text-white top-44 mx-auto right-0 left-0 bg-black bg-opacity-70 p-10">
                 <h1 className="font-bold text-3xl mb-6">{isLogInUser ? "Sign In" : "Sign Up"}</h1>
                 {!isLogInUser && <input ref={name} required className="w-full my-3 p-3 bg-transparent border-2" type="text" placeholder="Enter Your Name"/>}
                 <input required ref={email} className="w-full my-3 p-3 bg-transparent border-2" type="text" placeholder="Enter Your Email"/>

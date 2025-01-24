@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({title, movies}) => {
@@ -6,7 +5,7 @@ const MovieList = ({title, movies}) => {
   
   return (
     <div>
-      <div className="-mt-24 text-white bg-black z-20 relative">
+      <div className="mt-0 md:-mt-24 text-white bg-black z-20 relative">
         <div className="p-6 text-3xl">
           <h1>{title}</h1>
         </div>
